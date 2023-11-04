@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+      <h1>{{moveName?.name}}</h1>
+      <div class="row py-4">
+        <div class="d-flex flex-column">
+          <div class="stats-item">
+            <strong>Tipo: </strong> {{move?.pp}}
+          </div>
+          <div class="stats-item">
+            <strong>PP: </strong> {{move?.pp}}
+          </div>
+          <div class="stats-item">
+            <strong>Prioridad: </strong> {{move?.priority}}
+          </div>
+          <div class="stats-item">
+            <strong>Poder: </strong> {{move?.power}}
+          </div>
+          <div class="stats-item">
+            <strong>Clase de daño: </strong> {{move?.damage_class?.name | titlecase}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div *ngIf="move?.learned_by_pokemon" class="row py-4">
+      <div class="col-12">
+        <h2 class="section-title mb-4">
+          Pokemon que pueden aprenderlo
+        </h2>
+      </div>
+      <div class="col-12">
+        <ul  class="list-group">
+          <a class="list-group-item" *ngFor="let pokemon of move?.learned_by_pokemon" [routerLink]="['/pokemon', pokemon.name]">{{pokemon.name | titlecase}}</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

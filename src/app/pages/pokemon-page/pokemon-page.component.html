@@ -1,0 +1,16 @@
+<div class="px-3 py-5">
+
+  <h1>Pokemons</h1>
+
+  <div  class="d-flex flex-wrap align-items-stretch">
+    <div *ngIf="pokemons.length === 0; else table" class="alert alert-warning text-center">
+      No hay pokemons que mostrar
+    </div>
+
+    <ng-template #table>
+      <div  class="col-12 col-sm-6 col-md-4 col-xl-3 height-100" *ngFor="let pokemon of pokemons; let i = index">
+        <pokemon-item [pokemonResult]="pokemon"></pokemon-item>
+      </div>
+      </ng-template>
+  </div>
+</div>
