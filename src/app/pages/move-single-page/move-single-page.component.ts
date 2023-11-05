@@ -6,11 +6,11 @@ import { PokeapiService } from '../../services/pokeapi.service';
 import { Moves, Name } from 'src/app/interfaces/attack.interface';
 
 @Component({
-  selector: 'app-attack-single-page',
-  templateUrl: './attack-single-page.component.html',
-  styleUrls: ['./attack-single-page.component.scss']
+  selector: 'app-move-single-page',
+  templateUrl: './move-single-page.component.html',
+  styleUrls: ['./move-single-page.component.scss']
 })
-export class AttackSinglePageComponent implements OnInit {
+export class MoveSinglePageComponent implements OnInit {
 
   public move?: Moves;
 

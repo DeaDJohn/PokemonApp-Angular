@@ -19,6 +19,7 @@ export class PokemonSinglePageComponent implements OnInit {
   public specie?:PokemonSpecie;
   public description:string = '';
 
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,

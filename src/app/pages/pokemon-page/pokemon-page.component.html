@@ -11,6 +11,24 @@
       <div  class="col-12 col-sm-6 col-md-4 col-xl-3 height-100" *ngFor="let pokemon of pokemons; let i = index">
         <pokemon-item [pokemonResult]="pokemon"></pokemon-item>
       </div>
-      </ng-template>
+
+      <div class="col-12 mt-5 d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" (click)="previousPage()" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><span class="page-link" >{{page}}</span></li>
+            <li class="page-item">
+              <a class="page-link" (click)="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </ng-template>
   </div>
 </div>

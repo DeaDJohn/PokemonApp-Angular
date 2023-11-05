@@ -19,8 +19,14 @@ export class PokeapiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPokemons() : Observable<ResultAPIPokemonList>{
-    return this.httpClient.get<ResultAPIPokemonList>(this.urlPokemon);
+  // Convert getPokemons function in a funtion to get paginations.
+  // the api use this system to get the pagination ?limit=20&offset=20
+
+  getPokemons(page: number = 1) : Observable<ResultAPIPokemonList>{
+    const pageSize: number = 20;
+    const offset = (page - 1) * pageSize;
+    const urlApi = `${this.urlPokemon}?limit=${pageSize}&offset=${offset}`;
+    return this.httpClient.get<ResultAPIPokemonList>(urlApi);
   }
 
   getPokemonById(id:string) : Observable<Pokemon>{
