@@ -7,7 +7,17 @@
       <div *ngIf="pokemon?.stats" class="row py-4">
         <div class="d-flex flex-column">
           <div class="stats-item" *ngFor="let stat of pokemon?.stats">
-            <strong>{{stat.stat.name | titlecase}}</strong> {{stat.base_stat}}</div>
+            <strong>{{stat.stat.name | titlecase}}</strong> {{stat.base_stat}}
+          </div>
+          <div class="stats-item">
+            <strong>base_happiness</strong> {{specie?.base_happiness}}
+          </div>
+          <div class="stats-item">
+            <strong>capture_rate</strong> {{specie?.capture_rate}}
+          </div>
+          <div class="stats-item">
+            <strong>Habitat</strong> {{specie?.habitat?.name | titlecase}}
+          </div>
         </div>
       </div>
       <div *ngIf="pokemon?.types" class="d-flex flex-row">
@@ -18,7 +28,6 @@
       <img class="w-100" [src]="pokemon?.sprites?.other?.dream_world?.front_default" [alt]="pokemon?.name">
     </div>
   </div>
-
 
   <div *ngIf="pokemon?.abilities" class="row py-4">
     <div class="col-12">
@@ -41,22 +50,11 @@
     </div>
     <div class="col-12">
       <ul  class="list-group">
-        <a class="list-group-item" *ngFor="let move of pokemon?.moves" [routerLink]="['/moves', move.move.name]">{{move.move.name | titlecase}}</a>
+        <a class="list-group-item" *ngFor="let move of pokemon?.moves" [routerLink]="['/move', move.move.name]">{{move.move.name | titlecase}}</a>
       </ul>
     </div>
   </div>
 
-  <div *ngIf="pokemon?.moves" class="row py-4">
-    <div class="col-12">
-      <h2 class="section-title mb-4">
-        Evoluciones
-      </h2>
-    </div>
-    <div class="col-12">
-      <ul  class="list-group">
-        <a class="list-group-item" *ngFor="let move of pokemon?.moves" [routerLink]="['/moves', move.move.name]">{{move.move.name | titlecase}}</a>
-      </ul>
-    </div>
-  </div>
+
 </div>
 

@@ -25,17 +25,17 @@
     </div>
 
   </div>
-  <div class="row">
+  <div class="row small-items">
     <div *ngIf="move?.learned_by_pokemon" class="row py-4">
       <div class="col-12">
         <h2 class="section-title mb-4">
           Pokemon que pueden aprenderlo
         </h2>
       </div>
-      <div class="col-12">
-        <ul  class="list-group">
-          <a class="list-group-item" *ngFor="let pokemon of move?.learned_by_pokemon" [routerLink]="['/pokemon', pokemon.name]">{{pokemon.name | titlecase}}</a>
-        </ul>
+      <div class="row">
+          <div class="col-4 col-sm-3 col-md-2 mb-3" *ngFor="let pokemon of move?.learned_by_pokemon">
+            <pokemon-item [pokemonResult]="pokemon" ></pokemon-item>
+          </div>
       </div>
     </div>
   </div>

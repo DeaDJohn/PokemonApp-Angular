@@ -6,8 +6,7 @@ import {PokeapiService} from '../../services/pokeapi.service';
 @Component({
   selector: 'pokemon-item',
   templateUrl: './pokemon.component.html',
-  styles: [
-  ]
+  styleUrls: ['./pokemon.component.scss']
 })
 export class PokemonComponent implements OnInit {
   public pokemon!: Pokemon | null;

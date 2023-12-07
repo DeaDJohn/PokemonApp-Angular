@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 12px;
+  margin: 10px;
+}
+.small-items{
+  h3{
+    font-size: 1rem;
+  }
+}

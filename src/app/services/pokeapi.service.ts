@@ -6,6 +6,7 @@ import { ResultAPIPokemonList } from '../interfaces/resultApi.interface';
 import { Moves } from '../interfaces/attack.interface';
 import { Evolution } from '../interfaces/evolution.interface';
 import { PokemonSpecie } from '../interfaces/pokemonSpecie.interface';
+import { MovesList } from '../interfaces/movesList.interface';
 
 
 
@@ -27,6 +28,13 @@ export class PokeapiService {
     const offset = (page - 1) * pageSize;
     const urlApi = `${this.urlPokemon}?limit=${pageSize}&offset=${offset}`;
     return this.httpClient.get<ResultAPIPokemonList>(urlApi);
+  }
+
+  getMoves(page: number = 1) : Observable<MovesList>{
+    const pageSize: number = 20;
+    const offset = (page - 1) * pageSize;
+    const urlApi = `${this.urlMove}?limit=${pageSize}&offset=${offset}`;
+    return this.httpClient.get<MovesList>(urlApi);
   }
 
   getPokemonById(id:string) : Observable<Pokemon>{
