@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pokemon } from '../interfaces/pokemon.interface';
+import { Ability } from '../interfaces/ability.interface';
 import { ResultAPIPokemonList } from '../interfaces/resultApi.interface';
 import { Moves } from '../interfaces/attack.interface';
 import { Evolution } from '../interfaces/evolution.interface';
@@ -17,6 +18,7 @@ export class PokeapiService {
   private urlMove:string = 'https://pokeapi.co/api/v2/move/';
   private urlEvolution:string = 'https://pokeapi.co/api/v2/evolution-chain/';
   private urlSpecies:string = 'https://pokeapi.co/api/v2/pokemon-species/';
+  private urlAbility:string = 'https://pokeapi.co/api/v2/ability/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -59,6 +61,13 @@ export class PokeapiService {
     var urlApi = `${this.urlEvolution}${id}`;
     console.log(urlApi);
     return this.httpClient.get<Evolution>(urlApi);
+  }
+
+  getAbilityById(id:string) : Observable<Ability>{
+    console.log("🚀 ~ file: pokeapi.service.ts:67 ~ PokeapiService ~ getAbilityById ~ id:", id)
+    var urlApi = `${this.urlAbility}${id}`;
+    console.log(urlApi);
+    return this.httpClient.get<any>(urlApi);
   }
 
 }

@@ -1,8 +1,15 @@
 <div class="container">
-
+  <h3>Movimiento</h3>
   <div class="row">
     <div class="col">
       <h1>{{moveName?.name}}</h1>
+      <span *ngIf="targetName" class="badge text-bg-primary me-1">{{targetName | titlecase}}</span>
+      <div class="row py-4">
+        <div class="col-md-8">
+          <p *ngIf="effectEntry">{{effectEntry.short_effect}}</p>
+          <p *ngIf="effectEntry">{{effectEntry.effect}}</p>
+        </div>
+      </div>
       <div class="row py-4">
         <div class="d-flex flex-column">
           <div class="stats-item">

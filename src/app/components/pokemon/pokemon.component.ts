@@ -10,6 +10,7 @@ import {PokeapiService} from '../../services/pokeapi.service';
 })
 export class PokemonComponent implements OnInit {
   public pokemon!: Pokemon | null;
+  public pokemonImg :string = '';
   @Input()
   public pokemonResult : Result = { name: '', url: '' };
 
@@ -18,14 +19,18 @@ export class PokemonComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     console.log(this.pokemonResult.name);
     this.PokeapiService.getPokemonById(this.pokemonResult.name)
-    .subscribe((data)=> {
-      this.pokemon = data; // Almacena los datos en la variable
-      // Aquí puedes realizar cualquier otra lógica con los datos si es necesario
-      console.log(data)
-    });
+      .subscribe((data) => {
+        this.pokemon = data; // Almacena los datos en la variable
+        // Aquí puedes realizar cualquier otra lógica con los datos si es necesario
+        if (this.pokemon.sprites?.other?.dream_world?.front_default) {
+          this.pokemonImg = this.pokemon.sprites.other.dream_world.front_default;
+        } else {
+          this.pokemonImg = this.pokemon.sprites.front_default;
+        }
+        console.log(data);
+      });
   }
 
 

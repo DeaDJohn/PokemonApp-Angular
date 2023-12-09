@@ -1,6 +1,6 @@
 <a class="card w-100 cursor-pointer d-flex" [routerLink]="[ '/pokemon/', pokemon?.name]">
   <div class="card-img-top">
-    <img class="" [src]="pokemon?.sprites?.other?.dream_world?.front_default" [alt]="pokemon?.name">
+    <img class="" [src]="pokemonImg" [alt]="pokemon?.name">
   </div>
   <div class="card-body text-center">
     <h3 class="card-title">{{pokemon?.name | titlecase}}</h3>
