@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { Pokemon } from '../interfaces/pokemon.interface';
 import { Ability } from '../interfaces/ability.interface';
 import { ResultAPIPokemonList } from '../interfaces/resultApi.interface';
@@ -13,6 +13,7 @@ import { MovesList } from '../interfaces/movesList.interface';
 
 @Injectable({ providedIn: 'root' })
 export class PokeapiService {
+  private cache = new Map<string, any>();
 
   private urlPokemon:string = 'https://pokeapi.co/api/v2/pokemon/';
   private urlMove:string = 'https://pokeapi.co/api/v2/move/';
@@ -29,51 +30,108 @@ export class PokeapiService {
     const pageSize: number = 20;
     const offset = (page - 1) * pageSize;
     const urlApi = `${this.urlPokemon}?limit=${pageSize}&offset=${offset}`;
-    return this.httpClient.get<ResultAPIPokemonList>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<ResultAPIPokemonList>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
   getMoves(page: number = 1) : Observable<MovesList>{
     const pageSize: number = 20;
     const offset = (page - 1) * pageSize;
     const urlApi = `${this.urlMove}?limit=${pageSize}&offset=${offset}`;
-    return this.httpClient.get<MovesList>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<MovesList>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
   getAbilities(page: number = 1) : Observable<MovesList>{
     const pageSize: number = 20;
     const offset = (page - 1) * pageSize;
     const urlApi = `${this.urlAbility}?limit=${pageSize}&offset=${offset}`;
-    return this.httpClient.get<MovesList>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<MovesList>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
   getPokemonById(id:string) : Observable<Pokemon>{
     var urlApi = `${this.urlPokemon}${id}`;
-    console.log(urlApi);
-    return this.httpClient.get<Pokemon>(urlApi);
+    //console.log(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    console.log("🚀 ~ file: pokeapi.service.ts:74 ~ PokeapiService ~ getPokemonById ~ this.cache:", this.cache)
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<Pokemon>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
   getSpeciesById(id:string) : Observable<PokemonSpecie>{
     var urlApi = `${this.urlSpecies}${id}`;
     console.log(urlApi);
-    return this.httpClient.get<PokemonSpecie>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<PokemonSpecie>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
   getMoveById(id:string) : Observable<Moves>{
     var urlApi = `${this.urlMove}${id}`;
     console.log(urlApi);
-    return this.httpClient.get<Moves>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<Moves>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
   getEvolutionById(id:number) : Observable<Evolution>{
     var urlApi = `${this.urlEvolution}${id}`;
     console.log(urlApi);
-    return this.httpClient.get<Evolution>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<Evolution>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
   getAbilityById(id:string) : Observable<Ability>{
     console.log("🚀 ~ file: pokeapi.service.ts:67 ~ PokeapiService ~ getAbilityById ~ id:", id)
     var urlApi = `${this.urlAbility}${id}`;
     console.log(urlApi);
-    return this.httpClient.get<any>(urlApi);
+    const cachedResponse = this.cache.get(urlApi);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    } else {
+      return this.httpClient.get<Ability>(urlApi).pipe(
+        tap(response => this.cache.set(urlApi, response))
+      );
+    }
   }
 
 }

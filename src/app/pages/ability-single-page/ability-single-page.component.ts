@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokeapiService } from '../../services/pokeapi.service';
-import { Ability, AbilityEffectEntry } from '../../interfaces/ability.interface';
+import { Ability, AbilityEffectEntry, Name } from '../../interfaces/ability.interface';
 import { switchMap } from 'rxjs';
-import { Name } from 'src/app/interfaces/attack.interface';
 
 @Component({
   selector: 'app-ability-single-page',
