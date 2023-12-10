@@ -38,6 +38,12 @@ export class PokeapiService {
     const urlApi = `${this.urlMove}?limit=${pageSize}&offset=${offset}`;
     return this.httpClient.get<MovesList>(urlApi);
   }
+  getAbilities(page: number = 1) : Observable<MovesList>{
+    const pageSize: number = 20;
+    const offset = (page - 1) * pageSize;
+    const urlApi = `${this.urlAbility}?limit=${pageSize}&offset=${offset}`;
+    return this.httpClient.get<MovesList>(urlApi);
+  }
 
   getPokemonById(id:string) : Observable<Pokemon>{
     var urlApi = `${this.urlPokemon}${id}`;

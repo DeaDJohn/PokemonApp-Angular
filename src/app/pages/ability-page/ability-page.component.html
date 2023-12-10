@@ -1,14 +1,39 @@
-<div class="container">
-  <h3>Habilidades</h3>
-  <div class="row">
-    <div class="col">
-      <h1>{{abilityName}}</h1>
-      <div class="row py-4">
-        <div class="col-md-8">
-          <p >{{effectEntry?.short_effect}}</p>
-          <p >{{effectEntry?.effect}}</p>
+<div class="px-3 py-5">
+
+  <h1>Habilidades</h1>
+
+  <div  class="grid flex-wrap align-items-stretch">
+    <div *ngIf="ability.length === 0; else table" class="alert alert-warning text-center">
+      No hay hablilidad que mostrar
+    </div>
+
+    <ng-template #table>
+      <div  class="g-col-12 g-col-sm-6 g-col-md-4 g-col-xl-3height-100" *ngFor="let move of ability; let i = index">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{move.name | titlecase}}</h5>
+            <a [routerLink]="['/ability', move.name]" class="btn btn-primary">Ver más</a>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="col-12 mt-5 d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" (click)="previousPage()" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><span class="page-link" >{{page}}</span></li>
+            <li class="page-item">
+              <a class="page-link" (click)="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </ng-template>
   </div>
 </div>

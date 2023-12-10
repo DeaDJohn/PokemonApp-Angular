@@ -7,6 +7,8 @@ import { PokemonComponent } from '../components/pokemon/pokemon.component';
 import { MovePageComponent } from './attack-page/move-page.component';
 import { PokemonSinglePageComponent } from './pokemon-single-page/pokemon-single-page.component';
 import { MoveSinglePageComponent } from './move-single-page/move-single-page.component';
+import { AbilitySinglePageComponent } from './ability-single-page/ability-single-page.component';
+import { AbilityPageComponent } from './ability-page/ability-page.component';
 
 
 
@@ -16,7 +18,9 @@ import { MoveSinglePageComponent } from './move-single-page/move-single-page.com
     PokemonComponent,
     MovePageComponent,
     PokemonSinglePageComponent,
-    MoveSinglePageComponent
+    MoveSinglePageComponent,
+    AbilitySinglePageComponent,
+    AbilityPageComponent
   ],
   imports: [
     CommonModule,

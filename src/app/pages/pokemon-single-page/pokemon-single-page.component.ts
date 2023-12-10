@@ -6,6 +6,7 @@ import { forkJoin, of, switchMap } from 'rxjs';
 import { Evolution } from 'src/app/interfaces/evolution.interface';
 import { PokemonSpecie } from 'src/app/interfaces/pokemonSpecie.interface';
 
+import Utils from '../../utils/utils';
 
 @Component({
   selector: 'app-pokemon-single-page',
@@ -18,7 +19,7 @@ export class PokemonSinglePageComponent implements OnInit {
   public evolution?:Evolution;
   public specie?:PokemonSpecie;
   public description:string = '';
-
+  public pokemonImg :string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,6 +37,8 @@ export class PokemonSinglePageComponent implements OnInit {
             this.router.navigateByUrl('');
             return of(null);
           }
+          this.pokemonImg = Utils.getAvaiblePokemonImg(pokemon);
+
           this.pokemon = pokemon;
           return forkJoin({
             evolution: this.PokeapiService.getEvolutionById(this.pokemon.id),
@@ -51,6 +54,7 @@ export class PokemonSinglePageComponent implements OnInit {
           this.specie = specie;
           this.evolution = evolution;
           this.description = specie.flavor_text_entries[0].flavor_text;
+
           console.log('evolution:', evolution);
           console.log('specie:', specie);
           // Continúa manejando los datos según tus necesidades
