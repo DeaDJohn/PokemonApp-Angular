@@ -12,9 +12,26 @@
   }
 }
 
-.list-group-item{
-  a{
+.list-group-item,
+.pagination{
+  a,
+  .page-link{
     color: inherit;
     text-decoration: none;
+  }
+}
+
+.list-group-item,
+.pagination{
+  a{
+    cursor: pointer;
+  }
+}
+.pagination-container{
+  grid-column: 4 span;
+  text-align: center;
+  margin-top: 50px;
+  .pagination{
+    justify-content: center;
   }
 }
